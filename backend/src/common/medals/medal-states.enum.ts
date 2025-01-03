@@ -1,0 +1,11 @@
+export enum MedalStates {
+  RADIANT = 'RADIANTE',
+  IMMORTAL = 'INMORTAL',
+  DIAMOND = 'DIAMANTE',
+  PLATINUM = 'PLATINIUM',
+  GOLD = 'ORO',
+  SILVER = 'PLATA',
+  BRONZE = 'BRONCE',
+  IRON = 'HIERRO',
+  WOOD = 'MADERA',
+};
