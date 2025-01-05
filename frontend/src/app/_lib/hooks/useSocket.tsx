@@ -26,7 +26,7 @@ interface SocketContextProps<T> {
   removeEventListener: (event: string) => void;
 }
 
-const SocketContext = createContext<SocketContextProps<any>| undefined>(undefined);
+const SocketContext = createContext<SocketContextProps<unknown>| undefined>(undefined);
 
 export function SocketProvider<T>({ children }: { children: React.ReactNode }) {
   const { user } = useAuth();

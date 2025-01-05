@@ -32,7 +32,9 @@ export class AdminController {
   ): Promise<{ message: string; request_status: string }> {
     const result = await this.adminService.processRequest(bodyDto.request_id, bodyDto.action);
     const lastAchievedMedal = result.trainer_achieved_medals.at(-1);
-    const message = `Felicitaciones, ${result.trainer_username}. Te han asignado tu nueva medalla de tipo ${lastAchievedMedal.name}`;
+    const message = lastAchievedMedal?.name
+      ? `Felicitaciones, ${result.trainer_username}. Te han asignado tu nueva medalla de tipo ${lastAchievedMedal.name}`
+      : `Felicitaciones, ${result.trainer_username}. Han validado tu registro de pokemones ${result.items_processed}`;
 
     if (result.trainer_request_status === MedalEvaluationStatus.ACCEPTED) {
       this.eventsGateway.emitEvent(

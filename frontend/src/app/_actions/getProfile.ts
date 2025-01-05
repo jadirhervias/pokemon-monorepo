@@ -10,7 +10,7 @@ export async function getProfile(): Promise<UserProfile> {
     redirect('/');
   }
 
-  const apiResponse = await fetch('http://localhost:4000/api/users/profile', {
+  const apiResponse = await fetch(`${process.env.BACKEND_URL}/api/users/profile`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',

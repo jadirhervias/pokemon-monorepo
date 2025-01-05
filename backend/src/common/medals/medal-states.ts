@@ -14,7 +14,7 @@ export class MedalState {
     next_medal: MedalState | null;
     achieved_medals: MedalState[];
   } {
-    const resolvedMedal = MedalStateMachine.resolveforUser(user, 0);
+    const resolvedMedal = MedalStateMachine.guestMedalState(user, 0);
 
     return {
       current_medal: resolvedMedal.medal,
@@ -23,7 +23,7 @@ export class MedalState {
     };
   }
 
-  resolveforUser(user: User, requestedCount: number): {
+  guestMedalState(user: User, requestedCount: number): {
     medal: MedalState | null;
     nextMedal: MedalState | null;
     achievedMedals: MedalState[];

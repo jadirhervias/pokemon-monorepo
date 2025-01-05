@@ -11,7 +11,7 @@ export async function processMedalRequest(form: FormData) {
     redirect('/');
   }
 
-  const apiResponse = await fetch('http://localhost:4000/api/admin/process-medal-request', {
+  const apiResponse = await fetch(`${process.env.BACKEND_URL}/api/admin/process-medal-request`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',

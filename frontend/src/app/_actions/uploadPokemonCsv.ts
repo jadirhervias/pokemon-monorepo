@@ -10,7 +10,7 @@ export async function uploadPokemonCsv(form: FormData) {
     redirect('/');
   }
 
-  const apiResponse = await fetch('http://localhost:4000/api/trainer/request-medal-evaluation', {
+  const apiResponse = await fetch(`${process.env.BACKEND_URL}/api/trainer/request-medal-evaluation`, {
     method: 'POST',
     headers: {
       Authorization: `Bearer ${token.value}`,

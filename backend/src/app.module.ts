@@ -16,6 +16,7 @@ import { JwtConfigService } from './config/jwt/JwtConfigService';
   imports: [
     ConfigModule.forRoot({
       isGlobal: true,
+      envFilePath: process.env.NODE_ENV === 'production' ? '.env' : '.env.development',
     }),
     JwtModule.registerAsync({
       global: true,

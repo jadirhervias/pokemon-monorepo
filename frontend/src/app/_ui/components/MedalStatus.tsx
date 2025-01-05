@@ -28,11 +28,11 @@ const MedalStatus = ({ profile }: { profile: TrainerProfile }) => {
 
           setMedalName(nextMedal);
           setMedalThreshold(nextMedalThreshold);
-          !medalRequested && setMedalRequested(true);
+          setMedalRequested(true);
         }
       }
     },
-    [socketEvents, socketIsConnected]
+    [socketEvents, socketIsConnected, medalName]
   );
 
   return (

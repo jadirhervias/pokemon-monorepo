@@ -41,7 +41,9 @@ export class TrainerController {
     ) pokemonCsv: Express.Multer.File
   ): Promise<{ medal: string;  requested: boolean; }> {
     const result = await this.trainerService.processPokemonCSV(pokemonCsv.buffer, user.id);
-    const message = `El usuario ${user.username} ha solicitado asignación de medalla tipo ${result.medal}`;
+    const message = result.newMedalAchieved
+      ? `El usuario ${user.username} ha solicitado asignación de medalla tipo ${result.medal}`
+      : `El usuario ${user.username} ha solicitado evaluación de ${result.pokemonCount} pokemones`;
 
     if (result.requested) {
       const adminIds = await this.adminService.getAdmindIds();

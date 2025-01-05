@@ -1,10 +1,10 @@
 "use server"
-import { redirect, unauthorized } from "next/navigation"
+import { redirect } from "next/navigation"
 import { getHomeRouteByRole } from "@/app/_lib/utils/roles";
 import { cookies } from "next/headers";
 
 export async function login(form: FormData) {
-  const apiResponse = await fetch('http://localhost:4000/api/auth/login', {
+  const apiResponse = await fetch(`${process.env.BACKEND_URL}/api/auth/login`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({

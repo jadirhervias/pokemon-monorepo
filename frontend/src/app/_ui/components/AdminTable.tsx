@@ -28,7 +28,7 @@ const AdminTable = ({ items }: { items: MedalRequest[] }) => {
         emptySocketEvents(); // ensure not rendering already processed events
       }
     },
-    [socketEvents.lastEvent]
+    [socketEvents.lastEvent, emptySocketEvents]
   );
 
   if (requests.length === 0) {
@@ -61,14 +61,14 @@ const AdminTable = ({ items }: { items: MedalRequest[] }) => {
               <form action={processMedalRequest}>
                 <input type="hidden" name="request_id" value={item.id} />
                 <input type="hidden" name="action" value="accept" />
-                <button type="submit" style={{border: 'none', cursor: 'pointer'}}>
+                <button type="submit" style={{border: 'none', cursor: 'pointer', background: 'transparent'}}>
                   <Image alt="accept" src="/accept-icon.png" width={35} height={35}/>
                 </button>
               </form>
               <form action={processMedalRequest}>
                 <input type="hidden" name="request_id" value={item.id} />
                 <input type="hidden" name="action" value="reject" />
-                <button type="submit" style={{border: 'none', cursor: 'pointer'}}>
+                <button type="submit" style={{border: 'none', cursor: 'pointer', background: 'transparent'}}>
                   <Image alt="accept" src="/reject-icon.png" width={50} height={50}/>
                 </button>
               </form>

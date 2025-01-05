@@ -9,7 +9,7 @@ const AdminDashboard = async () => {
   let medalRequests: MedalRequest[] = [];
 
   if (token) {
-    const reponse = await fetch('http://localhost:4000/api/admin/requests', {
+    const reponse = await fetch(`${process.env.BACKEND_URL}/api/admin/requests`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',

@@ -14,7 +14,7 @@ const RequestsHistory = async () => {
   };
 
   if (token) {
-    const reponse = await fetch('http://localhost:4000/api/admin/requests-history', {
+    const reponse = await fetch(`${process.env.BACKEND_URL}/api/admin/requests-history`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',

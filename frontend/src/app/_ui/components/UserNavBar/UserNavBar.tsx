@@ -53,6 +53,7 @@ const UserNavBar = () => {
         <Image src="/pokemon-logo.svg" alt="Logo" width={100} height={50} priority />
         <button
           className="hamburger"
+          style={{ color: 'black' }}
           onClick={() => setIsMenuOpen((prev) => !prev)}
         >
           ☰

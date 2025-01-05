@@ -31,6 +31,7 @@ export class TrainerService {
     requested: boolean;
     requestId: string;
     status: MedalEvaluationStatus;
+    newMedalAchieved: boolean,
   }> {
     const user = await this.userModel.findById(userId).exec();
 
@@ -51,7 +52,8 @@ export class TrainerService {
         })
         .on('end', async () => {
           try {
-            const medalState = MedalStateMachine.resolveforUser(user, pokemonCount);
+            const medalState = MedalStateMachine.guestMedalState(user, pokemonCount);
+            const trainerAchievedNewMedal = medalState.medal && medalState.medal?.name !== user.medals.at(-1);
 
             const medalRequest = await this.medalEvaluationRequestModel.findOneAndUpdate(
               {
@@ -60,7 +62,7 @@ export class TrainerService {
               },
               { 
                 trainer_username: user.username,
-                medal: medalState.medal.name,
+                medal: medalState.medal?.name ?? medalState.nextMedal?.name,
                 pokemon_count: pokemonCount,
               },
               {
@@ -70,10 +72,11 @@ export class TrainerService {
             );
 
             resolve({
-              medal: medalState.medal.name,
+              medal: medalState.medal?.name ?? medalState.nextMedal?.name,
               status: MedalEvaluationStatus.PENDING,
               pokemonCount: pokemonCount,
               requestId: medalRequest.id,
+              newMedalAchieved: trainerAchievedNewMedal,
               requested: true,
             });
           } catch (error) {

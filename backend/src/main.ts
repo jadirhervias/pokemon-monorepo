@@ -7,7 +7,7 @@ async function bootstrap() {
   app.setGlobalPrefix('api');
   app.enableCors();
   const configService = app.get(ConfigService);
-  await app.listen(parseInt(configService.get('PORT'), 10) || 4000);
+  await app.listen(parseInt(configService.get('BACKEND_PORT'), 10) || 4000);
 }
 
 bootstrap();

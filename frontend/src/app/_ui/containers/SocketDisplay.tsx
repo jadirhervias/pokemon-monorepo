@@ -26,7 +26,7 @@ export function SocketDisplay({ children, debugSocket = false }: { children: Rea
         removeEventListener(eventName);
       }
     };
-  }, [eventName]);
+  }, [eventName, addNotification, listenToEvent, removeEventListener]);
 
   return (
     <>

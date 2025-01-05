@@ -67,6 +67,7 @@ export class AdminService {
     trainer_current_medal: MedalState | null;
     trainer_achieved_medals: MedalState[];
     trainer_next_medal: MedalState | null;
+    items_processed: number;
   }> {
     const request = await this.medalEvaluationRequestModel.findOne({
       _id: requestId,
@@ -84,7 +85,7 @@ export class AdminService {
     }
 
     const newPokemonCount = user.pokemon_count + request.pokemon_count;
-    const medalState = MedalStateMachine.resolveforUser(user, request.pokemon_count);
+    const medalState = MedalStateMachine.guestMedalState(user, request.pokemon_count);
 
     if (action === 'accept') {
       user.medals = medalState.achievedMedals.map(medal => medal.name);
@@ -102,6 +103,7 @@ export class AdminService {
     await request.save();
 
     return {
+      items_processed: request.pokemon_count,
       trainer_id: request.trainer_id,
       trainer_username: user.username,
       trainer_current_medal: medalState.medal,

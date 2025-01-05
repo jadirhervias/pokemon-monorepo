@@ -5,7 +5,7 @@ import { register } from '@/app/_actions/register';
 import Link from 'next/link';
 
 const RegisterPage = () => {
-  const [selectedRole, setSelectedRole] = useState<Role>(Role.TRAINER);
+  const [, setSelectedRole] = useState<Role>(Role.TRAINER);
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
@@ -32,8 +32,9 @@ const RegisterPage = () => {
           name="role"
           onChange={(e) => setSelectedRole(e.target.value as Role)}
           className="auth-select"
+          defaultValue=""
         >
-          <option selected>Selecciona un rol</option>
+          <option value="">Selecciona un rol</option>
           <option value={Role.TRAINER}>Entrenador</option>
           <option value={Role.ADMIN}>Admin</option>
         </select>

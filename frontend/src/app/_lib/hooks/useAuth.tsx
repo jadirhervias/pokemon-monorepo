@@ -1,5 +1,5 @@
 "use client"
-import { createContext, useContext, useEffect, useState } from 'react';
+import { createContext, useCallback, useContext, useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { clearCookies, getCookie } from '@/app/_lib/utils/cookies';
 import { isJwtExpired } from '@/app/_lib/utils/jwt';
@@ -20,6 +20,13 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   const [user, setUser] = useState<UserProfile | null>(null);
   const router = useRouter();
 
+  const logout = useCallback(() => {
+    clearCookies('token', 'user_role', 'user');
+    setIsAuthenticated(false);
+    setUser(null);
+    router.push('/login');
+  }, [router]);
+
   useEffect(() => {
     const token = getCookie('token');
 
@@ -35,14 +42,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     }
 
     setIsInitialized(true);
-  }, []);
-
-  const logout = () => {
-    clearCookies('token', 'user_role', 'user');
-    setIsAuthenticated(false);
-    setUser(null);
-    router.push('/login');
-  };
+  }, [logout]);
 
   return (
     <AuthContext.Provider value={{ isAuthenticated, user, isInitialized, logout }}>

@@ -1,0 +1,12 @@
+Dockerfile
+.dockerignore
+node_modules
+README.md
+.git
+etc
+dist
+.gitignore
+.env
+.vscode
+coverage
+logs

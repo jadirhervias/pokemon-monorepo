@@ -2,7 +2,7 @@
 import { io } from "socket.io-client";
 import { getCookie } from "@/app/_lib/utils/cookies";
 
-export const socket = io('http://localhost:4000/ws/io', {
+export const socket = io(`http://localhost:4000/ws/io`, {
   autoConnect: false,
   transports: ['websocket'],
   reconnection: true,

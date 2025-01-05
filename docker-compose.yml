@@ -1,0 +1,48 @@
+services:
+  backend:
+    container_name: backend
+    env_file:
+      - ./backend/.env
+    build:
+      context: ./backend
+    restart: always
+    ports:
+      - "4000:4000"
+    depends_on:
+      - mongo
+    networks:
+      - app
+
+  frontend:
+    container_name: frontend
+    env_file:
+      - ./frontend/.env
+    build:
+      context: ./frontend
+    restart: always
+    ports:
+      - "3000:3000"
+    depends_on:
+      - backend
+    networks:
+      - app
+
+  mongo:
+    image: mongo:latest
+    container_name: mongo
+    restart: always
+    volumes:
+      - ./data/mongo:/data/db:delegated
+    ports:
+      - 27017:27017
+    networks:
+      - app
+    healthcheck:
+      test: ["CMD", "mongo", "--eval", "db.runCommand({ ping: 1 })"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+
+networks:
+  app:
+    driver: bridge
