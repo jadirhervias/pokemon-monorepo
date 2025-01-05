@@ -5,9 +5,9 @@
   "private": true,
   "license": "UNLICENSED",
   "scripts": {
-    "re-build": "docker compose build --no-cache",
-    "start": "docker compose up -d",
-    "start:watch": "docker compose up",
-    "stop": "docker compose down"
+    "re-build": "docker-compose build --no-cache",
+    "start": "docker-compose up -d",
+    "start:watch": "docker-compose up",
+    "stop": "docker-compose down"
   }
 }

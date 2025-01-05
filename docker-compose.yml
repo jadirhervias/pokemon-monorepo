@@ -33,6 +33,7 @@ services:
     restart: always
     volumes:
       - ./data/mongo:/data/db:delegated
+      - ./init-mongo.js:/docker-entrypoint-initdb.d/init-mongo.js
     ports:
       - 27017:27017
     networks:
