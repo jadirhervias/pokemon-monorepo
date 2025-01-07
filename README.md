@@ -13,6 +13,10 @@
  - Frontend: http://localhost:3000
  - Backend: http://localhost:4000
 
+## Files(.csv) for test
+
+See [CSV examples](backend/etc).
+
 ## Using Docker Compose
 
 ### 👉 Run all at once
