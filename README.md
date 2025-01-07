@@ -29,12 +29,12 @@ npm run start
 npm run re-build
 ```
 
-### Stop all services (attached)
+### Stop all services
 ```bash
 npm run stop
 ```
 
-### Run all services (dettached)
+### Run all services (attached)
 ```bash
 npm run start:watch
 ```
